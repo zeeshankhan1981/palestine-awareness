@@ -153,13 +153,13 @@ const SubmitArticlePage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-palestine-black mb-2">Submit an Article</h1>
-        <p className="text-gray-600">
+    <div className="max-w-2xl mx-auto px-5 sm:px-8 py-16">
+      <header className="mb-16 text-center">
+        <h1 className="text-4xl font-serif font-bold mb-4">Submit an Article</h1>
+        <p className="text-gray-600 max-w-xl mx-auto">
           Submit news articles about Palestine to be verified and stored on the blockchain.
         </p>
-      </div>
+      </header>
 
       {submitStatus === 'success' ? (
         <div className="bg-green-50 border-l-4 border-green-500 p-4 mb-8">
@@ -185,12 +185,12 @@ const SubmitArticlePage: React.FC = () => {
         </div>
       ) : null}
 
-      <form onSubmit={handleSubmit} className="card">
-        <div className="p-6">
+      <form onSubmit={handleSubmit} className="mb-12">
+        <div className="space-y-6">
           {/* URL with fetch button */}
-          <div className="mb-6">
-            <label htmlFor="url" className="form-label">
-              <FaLink className="mr-2" />
+          <div>
+            <label htmlFor="url" className="block text-gray-700 font-medium mb-2">
+              <FaLink className="mr-2 inline-block" />
               Article URL
             </label>
             <div className="flex">
@@ -201,13 +201,13 @@ const SubmitArticlePage: React.FC = () => {
                 value={formData.url}
                 onChange={handleInputChange}
                 placeholder="https://example.com/article"
-                className={`form-input flex-grow ${errors.url ? 'border-red-500' : ''}`}
+                className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-gray-200 focus:border-gray-400 ${errors.url ? 'border-red-500' : 'border-gray-300'}`}
               />
               <button
                 type="button"
                 onClick={fetchArticleMetadata}
                 disabled={urlFetching}
-                className="ml-2 bg-palestine-green text-white px-4 py-2 rounded hover:bg-palestine-green/90 transition-colors duration-200 disabled:opacity-50"
+                className="ml-2 bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition-colors duration-200 disabled:opacity-50"
               >
                 {urlFetching ? (
                   <FaSpinner className="animate-spin" />
@@ -223,9 +223,9 @@ const SubmitArticlePage: React.FC = () => {
           </div>
 
           {/* Title */}
-          <div className="mb-6">
-            <label htmlFor="title" className="form-label">
-              <FaNewspaper className="mr-2" />
+          <div>
+            <label htmlFor="title" className="block text-gray-700 font-medium mb-2">
+              <FaNewspaper className="mr-2 inline-block" />
               Article Title
             </label>
             <input
@@ -235,15 +235,15 @@ const SubmitArticlePage: React.FC = () => {
               value={formData.title}
               onChange={handleInputChange}
               placeholder="Enter article title"
-              className={`form-input ${errors.title ? 'border-red-500' : ''}`}
+              className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-gray-200 focus:border-gray-400 ${errors.title ? 'border-red-500' : 'border-gray-300'}`}
             />
             {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title}</p>}
           </div>
 
           {/* Source and Date - 2 columns */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="source_name" className="form-label">
+              <label htmlFor="source_name" className="block text-gray-700 font-medium mb-2">
                 Source Name
               </label>
               <input
@@ -253,14 +253,14 @@ const SubmitArticlePage: React.FC = () => {
                 value={formData.source_name}
                 onChange={handleInputChange}
                 placeholder="e.g. Al Jazeera, BBC, etc."
-                className={`form-input ${errors.source_name ? 'border-red-500' : ''}`}
+                className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-gray-200 focus:border-gray-400 ${errors.source_name ? 'border-red-500' : 'border-gray-300'}`}
               />
               {errors.source_name && <p className="text-red-500 text-sm mt-1">{errors.source_name}</p>}
             </div>
             
             <div>
-              <label htmlFor="publication_date" className="form-label">
-                <FaCalendarAlt className="mr-2" />
+              <label htmlFor="publication_date" className="block text-gray-700 font-medium mb-2">
+                <FaCalendarAlt className="mr-2 inline-block" />
                 Publication Date
               </label>
               <input
@@ -269,16 +269,16 @@ const SubmitArticlePage: React.FC = () => {
                 name="publication_date"
                 value={formData.publication_date}
                 onChange={handleInputChange}
-                className={`form-input ${errors.publication_date ? 'border-red-500' : ''}`}
+                className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-gray-200 focus:border-gray-400 ${errors.publication_date ? 'border-red-500' : 'border-gray-300'}`}
               />
               {errors.publication_date && <p className="text-red-500 text-sm mt-1">{errors.publication_date}</p>}
             </div>
           </div>
 
           {/* Description */}
-          <div className="mb-6">
-            <label htmlFor="description" className="form-label">
-              <FaInfoCircle className="mr-2" />
+          <div>
+            <label htmlFor="description" className="block text-gray-700 font-medium mb-2">
+              <FaInfoCircle className="mr-2 inline-block" />
               Description
             </label>
             <textarea
@@ -288,7 +288,7 @@ const SubmitArticlePage: React.FC = () => {
               onChange={handleInputChange}
               rows={4}
               placeholder="Provide a brief description of the article"
-              className={`form-input ${errors.description ? 'border-red-500' : ''}`}
+              className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-gray-200 focus:border-gray-400 ${errors.description ? 'border-red-500' : 'border-gray-300'}`}
             />
             {errors.description && <p className="text-red-500 text-sm mt-1">{errors.description}</p>}
           </div>
@@ -298,7 +298,7 @@ const SubmitArticlePage: React.FC = () => {
             <button
               type="submit"
               disabled={loading}
-              className="btn btn-primary flex items-center"
+              className="bg-gray-800 text-white px-6 py-3 rounded-md hover:bg-gray-700 transition-colors duration-200 disabled:opacity-50 flex items-center"
             >
               {loading ? (
                 <>
@@ -316,9 +316,9 @@ const SubmitArticlePage: React.FC = () => {
         </div>
       </form>
 
-      <div className="mt-8 bg-gray-50 p-6 rounded-lg">
-        <h3 className="text-lg font-semibold mb-4">What happens after submission?</h3>
-        <ol className="list-decimal pl-5 space-y-2">
+      <div className="border-t pt-8">
+        <h3 className="text-xl font-serif font-semibold mb-4">What happens after submission?</h3>
+        <ol className="list-decimal pl-5 space-y-2 text-gray-600">
           <li>Our system will crawl the article and extract its content.</li>
           <li>A unique hash of the content will be generated for verification.</li>
           <li>The article metadata and hash will be stored in our database.</li>
