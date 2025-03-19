@@ -77,36 +77,6 @@ const AboutPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Technology Stack */}
-      <div className="mb-12">
-        <h2 className="text-3xl font-serif font-bold mb-6">Our Technology</h2>
-        <div className="card">
-          <div className="card-body">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="text-xl font-serif font-semibold mb-3">Frontend</h3>
-                <ul className="list-disc pl-5 space-y-2 text-gray-600">
-                  <li>React for the user interface</li>
-                  <li>Custom CSS for styling</li>
-                  <li>React Router for navigation</li>
-                  <li>Axios for API requests</li>
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-serif font-semibold mb-3">Backend</h3>
-                <ul className="list-disc pl-5 space-y-2 text-gray-600">
-                  <li>Node.js with Express</li>
-                  <li>MongoDB for database storage</li>
-                  <li>Web3.js for blockchain integration</li>
-                  <li>Polygon blockchain for immutable storage</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Get Involved */}
       <div className="mb-12">
         <h2 className="text-3xl font-serif font-bold mb-6">Get Involved</h2>
@@ -209,38 +179,6 @@ const AboutPage: React.FC = () => {
                   </a>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Contact Section */}
-      <div>
-        <h2 className="text-3xl font-serif font-bold mb-6">Contact Us</h2>
-        <div className="card">
-          <div className="card-body">
-            <p className="mb-6">
-              Have questions, suggestions, or feedback? We'd love to hear from you.
-            </p>
-            
-            <div className="flex flex-col md:flex-row md:space-x-8">
-              <a 
-                href="mailto:contact@palestine-news-hub.org" 
-                className="btn btn-primary mb-4 md:mb-0"
-              >
-                <FaEnvelope className="mr-2" />
-                Email Us
-              </a>
-              
-              <a 
-                href="https://twitter.com/PalestineNewsHub" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="btn btn-secondary"
-              >
-                <FaTwitter className="mr-2" />
-                Follow Us
-              </a>
             </div>
           </div>
         </div>
