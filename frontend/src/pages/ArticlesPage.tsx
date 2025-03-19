@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaCalendarAlt, FaNewspaper, FaExternalLinkAlt, FaSpinner } from 'react-icons/fa';
+import { FaCalendarAlt, FaExternalLinkAlt, FaSpinner } from 'react-icons/fa';
 
 interface Article {
   id: number;
@@ -60,90 +60,81 @@ const ArticlesPage: React.FC = () => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', {
       year: 'numeric',
-      month: 'long',
+      month: 'short',
       day: 'numeric'
     });
   };
 
   return (
-    <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-palestine-black mb-2">Articles</h1>
-        <p className="text-gray-600">
-          Browse verified articles about Palestine from trusted sources.
+    <div className="max-w-2xl mx-auto px-5 sm:px-8 py-16">
+      <header className="mb-16 text-center">
+        <h1 className="text-4xl font-serif font-bold mb-4">Palestine News Hub</h1>
+        <p className="text-gray-600 max-w-xl mx-auto">
+          Verified news and analysis about Palestine from trusted sources
         </p>
-      </div>
+      </header>
 
       {loading ? (
         <div className="flex justify-center items-center py-20">
-          <FaSpinner className="animate-spin text-4xl text-palestine-green" />
+          <FaSpinner className="animate-spin text-4xl text-gray-500" />
         </div>
       ) : error ? (
         <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-8">
           <p className="text-red-700">{error}</p>
         </div>
       ) : articles.length === 0 ? (
-        <div className="bg-gray-50 rounded-lg p-8 text-center">
-          <FaNewspaper className="text-5xl text-gray-400 mx-auto mb-4" />
+        <div className="text-center py-16 border-t border-b">
           <h3 className="text-xl font-semibold mb-2">No Articles Found</h3>
           <p className="text-gray-600 mb-4">
             There are no articles available at the moment.
           </p>
-          <Link to="/submit" className="btn btn-primary inline-block">
+          <Link to="/submit" className="inline-block px-5 py-2 bg-black text-white font-medium rounded">
             Submit an Article
           </Link>
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 gap-6 mb-8">
+          <div className="divide-y">
             {articles.map((article) => (
-              <article 
-                key={article.id} 
-                className="card hover:shadow-lg transition-shadow duration-200"
-              >
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-3">
-                    <h2 className="text-xl font-bold text-palestine-black hover:text-palestine-green transition-colors duration-200">
-                      <Link to={`/articles/${article.id}`}>
-                        {article.title}
-                      </Link>
-                    </h2>
-                    <span className="text-sm bg-gray-100 px-2 py-1 rounded text-gray-600">
-                      {article.source_name}
-                    </span>
-                  </div>
+              <article key={article.id} className="py-10 first:pt-0">
+                <div className="flex items-center text-sm text-gray-500 mb-3">
+                  <span className="font-medium text-gray-700">{article.source_name}</span>
+                  <span className="mx-2">•</span>
+                  <span className="flex items-center">
+                    <FaCalendarAlt className="mr-1 text-xs" />
+                    {formatDate(article.publication_date)}
+                  </span>
+                  {article.blockchain_tx_hash && (
+                    <>
+                      <span className="mx-2">•</span>
+                      <span className="text-green-700 text-xs font-medium">Verified</span>
+                    </>
+                  )}
+                </div>
+                
+                <h2 className="text-2xl font-serif font-bold mb-4 hover:text-gray-700 transition-colors">
+                  <Link to={`/articles/${article.id}`}>
+                    {article.title}
+                  </Link>
+                </h2>
+                
+                <div className="flex items-center mt-6 space-x-4">
+                  <Link 
+                    to={`/articles/${article.id}`} 
+                    className="text-gray-800 hover:text-black font-medium"
+                  >
+                    Read more
+                  </Link>
                   
-                  <div className="flex items-center text-sm text-gray-500 mb-4">
-                    <FaCalendarAlt className="mr-1" />
-                    <span>{formatDate(article.publication_date)}</span>
-                  </div>
-                  
-                  <div className="flex flex-wrap justify-between items-center mt-4">
-                    <Link 
-                      to={`/articles/${article.id}`} 
-                      className="text-palestine-green hover:text-palestine-green/80 font-medium flex items-center"
-                    >
-                      Read More
-                    </Link>
-                    
-                    <div className="flex items-center space-x-2 text-sm">
-                      <a 
-                        href={article.source_url} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-gray-500 hover:text-palestine-black flex items-center"
-                      >
-                        <FaExternalLinkAlt className="mr-1" />
-                        Source
-                      </a>
-                      
-                      {article.blockchain_tx_hash && (
-                        <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
-                          Blockchain Verified
-                        </span>
-                      )}
-                    </div>
-                  </div>
+                  <a 
+                    href={article.source_url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-gray-800 flex items-center text-sm"
+                  >
+                    <FaExternalLinkAlt className="mr-1" />
+                    Original source
+                  </a>
                 </div>
               </article>
             ))}
@@ -151,38 +142,26 @@ const ArticlesPage: React.FC = () => {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex justify-center mt-8">
-              <nav className="inline-flex rounded-md shadow">
-                <button
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  disabled={currentPage === 1}
-                  className="px-3 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  Previous
-                </button>
-                
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <button
-                    key={page}
-                    onClick={() => handlePageChange(page)}
-                    className={`px-4 py-2 border border-gray-300 text-sm font-medium ${
-                      currentPage === page
-                        ? 'bg-palestine-green text-white'
-                        : 'bg-white text-gray-700 hover:bg-gray-50'
-                    }`}
-                  >
-                    {page}
-                  </button>
-                ))}
-                
-                <button
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                  className="px-3 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  Next
-                </button>
-              </nav>
+            <div className="flex justify-between items-center mt-12 pt-8 border-t">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                ← Previous
+              </button>
+              
+              <div className="text-sm text-gray-500">
+                Page {currentPage} of {totalPages}
+              </div>
+              
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Next →
+              </button>
             </div>
           )}
         </>
