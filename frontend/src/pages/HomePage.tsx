@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaNewspaper, FaCheck, FaShieldAlt, FaGlobe, FaDatabase } from 'react-icons/fa';
+import { FaNewspaper, FaShieldAlt, FaGlobe, FaDatabase, FaUpload } from 'react-icons/fa';
 
 const HomePage: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ const HomePage: React.FC = () => {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            
+            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">Voice for Palestine</h1>
             <p className="text-xl text-gray-700 mb-8 leading-relaxed">
               A decentralized news and awareness platform that preserves and verifies 
               Palestinian stories on the blockchain.
@@ -26,13 +26,34 @@ const HomePage: React.FC = () => {
                 Browse Articles
               </Link>
               <Link 
-                to="/verify" 
+                to="/submit" 
                 className="btn btn-secondary"
               >
-                <FaCheck className="mr-2" />
-                Verify Content
+                <FaUpload className="mr-2" />
+                Submit Article
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-serif font-bold mb-6 text-center">Our Mission</h2>
+            <p className="text-lg mb-6">
+              The Palestine News Hub is dedicated to preserving and verifying news 
+              about Palestine in the face of potential censorship and misinformation. 
+              By leveraging blockchain technology, we create an immutable record of 
+              news articles, ensuring that critical information remains accessible 
+              and verifiable.
+            </p>
+            <p className="text-lg">
+              In a world where digital content can be altered or removed, our platform 
+              provides a permanent, tamper-proof archive of Palestinian narratives and 
+              experiences, preserving the truth for future generations.
+            </p>
           </div>
         </div>
       </section>
@@ -41,7 +62,7 @@ const HomePage: React.FC = () => {
       <section className="py-20 bg-bg-light">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Why Voice for Palestine?</h2>
+            <h2 className="text-3xl font-serif font-bold mb-4">Why Voice for Palestine?</h2>
             <div className="w-24 h-1 bg-palestine-green mx-auto"></div>
           </div>
           
@@ -49,36 +70,36 @@ const HomePage: React.FC = () => {
             {/* Feature 1 */}
             <div className="card p-6 text-center">
               <div className="w-16 h-16 bg-palestine-green bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FaShieldAlt className="text-palestine-green text-2xl" />
+                <FaShieldAlt className="text-2xl text-palestine-green" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Verified Content</h3>
-              <p className="text-gray-600">
-                All articles are cryptographically verified and stored on the blockchain,
-                ensuring authenticity and preventing censorship.
+              <h3 className="text-xl font-bold mb-3">Censorship Resistant</h3>
+              <p>
+                Once published, articles cannot be removed or altered, protecting 
+                Palestinian narratives from censorship or erasure.
               </p>
             </div>
             
             {/* Feature 2 */}
             <div className="card p-6 text-center">
-              <div className="w-16 h-16 bg-palestine-red bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FaGlobe className="text-palestine-red text-2xl" />
+              <div className="w-16 h-16 bg-palestine-green bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <FaGlobe className="text-2xl text-palestine-green" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Global Awareness</h3>
-              <p className="text-gray-600">
-                Spreading awareness about the Palestinian cause through verified news
-                and stories from trusted sources around the world.
+              <h3 className="text-xl font-bold mb-3">Global Accessibility</h3>
+              <p>
+                Our decentralized platform ensures that information about Palestine 
+                remains accessible worldwide, regardless of regional restrictions.
               </p>
             </div>
             
             {/* Feature 3 */}
             <div className="card p-6 text-center">
-              <div className="w-16 h-16 bg-palestine-black bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FaDatabase className="text-palestine-black text-2xl" />
+              <div className="w-16 h-16 bg-palestine-green bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <FaDatabase className="text-2xl text-palestine-green" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Decentralized Storage</h3>
-              <p className="text-gray-600">
-                Content is stored on the Polygon blockchain, making it resistant to
-                censorship and ensuring long-term preservation.
+              <h3 className="text-xl font-bold mb-3">Verifiable Truth</h3>
+              <p>
+                Blockchain verification allows anyone to confirm the authenticity 
+                and publication date of articles, combating misinformation.
               </p>
             </div>
           </div>

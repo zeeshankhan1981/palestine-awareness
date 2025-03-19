@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaCalendarAlt, FaExternalLinkAlt, FaSpinner } from 'react-icons/fa';
+import { FaCalendarAlt, FaExternalLinkAlt, FaSpinner, FaShieldAlt } from 'react-icons/fa';
 
 interface Article {
   id: number;
@@ -107,7 +107,10 @@ const ArticlesPage: React.FC = () => {
                   {article.blockchain_tx_hash && (
                     <>
                       <span className="mx-2">•</span>
-                      <span className="badge badge-success">Verified</span>
+                      <span className="bg-green-100 text-green-800 px-2 py-0.5 rounded-full flex items-center text-xs">
+                        <FaShieldAlt className="mr-1" />
+                        Verified
+                      </span>
                     </>
                   )}
                 </div>

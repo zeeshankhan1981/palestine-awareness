@@ -2,6 +2,21 @@
 
 This guide explains how to deploy the Palestine Decentralized News & Awareness Hub to your baremetal server under the domain `voiceforpalestine.xyz` without interfering with your existing websites.
 
+## Testing Mode Deployment
+
+The deployment script has been updated to deploy the application in testing mode. This means:
+
+1. A banner will be displayed on the site indicating it's in testing mode
+2. The deployment is isolated and won't interfere with your existing websites (pmimrankhan.xyz and frametheglobenews.xyz)
+3. All services use dedicated systemd configurations to avoid conflicts
+
+### Important Notes for Testing Deployment
+
+- The application will be deployed to `/var/www/voiceforpalestine.xyz/`
+- The backend API runs on port 3001, which is different from your other websites
+- The Nginx configuration is set up to only affect the voiceforpalestine.xyz domain
+- All systemd services are named with the voiceforpalestine prefix to avoid conflicts
+
 ## Prerequisites
 
 - A baremetal server with Ubuntu/Debian
@@ -93,7 +108,7 @@ If you prefer to deploy manually:
    ```
    cd ../frontend
    npm install
-   npm run build
+   REACT_APP_TESTING_MODE=true npm run build
    ```
 
 2. Create the application directory on your server:
@@ -171,3 +186,22 @@ If you prefer to deploy manually:
   ```
 
 - If the database connection fails, verify the database credentials in the `.env` files.
+
+## Ensuring Isolation from Existing Websites
+
+To ensure that this deployment doesn't interfere with your existing websites (pmimrankhan.xyz and frametheglobenews.xyz):
+
+1. The Nginx configuration is domain-specific and only affects requests to voiceforpalestine.xyz
+2. The backend runs on a different port (3001) than your other websites
+3. All files are stored in a separate directory (/var/www/voiceforpalestine.xyz/)
+4. The systemd services have unique names to avoid conflicts
+5. The database uses its own dedicated database and user
+
+If you need to revert the deployment, you can simply:
+
+```
+ssh your_username@your_server_ip "sudo systemctl stop voiceforpalestine-backend.service voiceforpalestine-crawler.service && \
+sudo systemctl disable voiceforpalestine-backend.service voiceforpalestine-crawler.service && \
+sudo rm /etc/systemd/system/voiceforpalestine-*.service && \
+sudo rm /etc/nginx/sites-enabled/voiceforpalestine.xyz.conf && \
+sudo systemctl reload nginx"

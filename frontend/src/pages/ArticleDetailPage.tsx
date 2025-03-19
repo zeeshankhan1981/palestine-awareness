@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { FaCalendarAlt, FaExternalLinkAlt, FaSpinner, FaArrowLeft, FaCheck, FaHashtag } from 'react-icons/fa';
+import { FaCalendarAlt, FaExternalLinkAlt, FaSpinner, FaArrowLeft, FaCheck, FaHashtag, FaShieldAlt } from 'react-icons/fa';
 
 interface Article {
   id: number;
@@ -168,14 +168,18 @@ const ArticleDetailPage: React.FC = () => {
             )}
           </div>
           
-          <div className="mt-6">
-            <Link 
-              to={`/verify?hash=${article.content_hash}`}
-              className="btn btn-primary inline-flex items-center"
-            >
-              <FaCheck className="mr-2" />
-              Verify This Article
-            </Link>
+          <div className="mt-6 bg-green-50 p-4 rounded-lg border border-green-200">
+            <div className="flex items-center mb-2">
+              <FaShieldAlt className="text-green-600 mr-2" />
+              <h4 className="font-semibold text-green-800">Verification Status</h4>
+            </div>
+            <p className="text-green-700 mb-3">
+              This article has been verified and its content integrity is protected by blockchain technology.
+            </p>
+            <div className="flex items-center text-sm text-green-600">
+              <FaCheck className="mr-1" />
+              <span>Content verified on {formatDate(article.created_at)}</span>
+            </div>
           </div>
         </div>
       </article>

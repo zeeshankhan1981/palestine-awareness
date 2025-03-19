@@ -1,0 +1,14 @@
+[Unit]
+Description=Voice for Palestine Crawler Service
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/voiceforpalestine.xyz/crawler
+ExecStart=/var/www/voiceforpalestine.xyz/crawler/venv/bin/python3 crawler.py
+Restart=on-failure
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

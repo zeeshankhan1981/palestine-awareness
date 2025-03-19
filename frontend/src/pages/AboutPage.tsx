@@ -56,7 +56,7 @@ const AboutPage: React.FC = () => {
               <div className="flex justify-center items-center h-16 w-16 rounded-full bg-gray-100 mb-4 mx-auto">
                 <FaFingerprint className="h-8 w-8 text-gray-700" />
               </div>
-              <h3 className="text-xl font-serif font-semibold mb-3 text-center">Verify</h3>
+              <h3 className="text-xl font-serif font-semibold mb-3 text-center">Protect</h3>
               <p className="text-center text-gray-600">
                 We generate a unique hash of the article content and store it on the blockchain.
               </p>
@@ -70,7 +70,7 @@ const AboutPage: React.FC = () => {
               </div>
               <h3 className="text-xl font-serif font-semibold mb-3 text-center">Access</h3>
               <p className="text-center text-gray-600">
-                Anyone can access and verify the authenticity of articles using our platform.
+                Anyone can access and confirm the authenticity of articles using our platform.
               </p>
             </div>
           </div>

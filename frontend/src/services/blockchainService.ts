@@ -1,8 +1,13 @@
 import { ethers } from 'ethers';
+import axios from 'axios';
 
 // This will be replaced with the actual contract address after deployment
 const CONTRACT_ADDRESS = process.env.REACT_APP_CONTRACT_ADDRESS || '';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
+const IS_TESTING_MODE = process.env.REACT_APP_TESTING_MODE === 'true' || !CONTRACT_ADDRESS;
+
 console.log('Using contract address:', CONTRACT_ADDRESS);
+console.log('Testing mode:', IS_TESTING_MODE ? 'Enabled' : 'Disabled');
 
 // ABI for the UserVerification contract
 const USER_VERIFICATION_ABI = [
@@ -50,6 +55,12 @@ export const getUserVerificationContract = async (signer?: ethers.Signer) => {
 // Check if a user is verified
 export const isUserVerified = async (address: string): Promise<boolean> => {
   try {
+    if (IS_TESTING_MODE) {
+      // In testing mode, use the backend API
+      const response = await axios.post(`${API_BASE_URL}/users/verify`, { address });
+      return response.data.verified;
+    }
+    
     const { provider } = await getProviderAndSigner();
     const contract = new ethers.Contract(CONTRACT_ADDRESS, USER_VERIFICATION_ABI, provider);
     return await contract.isVerified(address);
@@ -62,6 +73,12 @@ export const isUserVerified = async (address: string): Promise<boolean> => {
 // Get user role
 export const getUserRole = async (address: string): Promise<UserRole> => {
   try {
+    if (IS_TESTING_MODE) {
+      // In testing mode, use the backend API
+      const response = await axios.post(`${API_BASE_URL}/users/verify`, { address });
+      return response.data.role as UserRole;
+    }
+    
     const { provider } = await getProviderAndSigner();
     const contract = new ethers.Contract(CONTRACT_ADDRESS, USER_VERIFICATION_ABI, provider);
     const role = await contract.getUserRole(address);
@@ -89,9 +106,51 @@ export const signVerificationMessage = async (address: string): Promise<string> 
   }
 };
 
-// For development/testing: Mock verification
-export const mockVerifyUser = async (address: string): Promise<boolean> => {
-  console.log(`Mock verifying user: ${address}`);
-  // In a real implementation, this would call the contract
-  return true;
+// Verify content on the blockchain
+export const verifyContent = async (content: string): Promise<any> => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}/verify`, { content });
+    return response.data;
+  } catch (error) {
+    console.error('Error verifying content:', error);
+    throw error;
+  }
+};
+
+// Verify URL on the blockchain
+export const verifyUrl = async (url: string): Promise<any> => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}/verify`, { url });
+    return response.data;
+  } catch (error) {
+    console.error('Error verifying URL:', error);
+    throw error;
+  }
+};
+
+// Verify hash on the blockchain
+export const verifyHash = async (hash: string): Promise<any> => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}/verify`, { hash });
+    return response.data;
+  } catch (error) {
+    console.error('Error verifying hash:', error);
+    throw error;
+  }
+};
+
+// For testing mode: Update user role
+export const updateUserRole = async (address: string, role: UserRole): Promise<boolean> => {
+  if (!IS_TESTING_MODE) {
+    console.error('updateUserRole is only available in testing mode');
+    return false;
+  }
+  
+  try {
+    const response = await axios.post(`${API_BASE_URL}/users/role`, { address, role });
+    return response.data.success;
+  } catch (error) {
+    console.error('Error updating user role:', error);
+    return false;
+  }
 };

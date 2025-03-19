@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaHome, FaNewspaper, FaUpload, FaCheck, FaInfoCircle, FaBars, FaTimes, FaUser } from 'react-icons/fa';
+import { FaHome, FaNewspaper, FaUpload, FaInfoCircle, FaBars, FaTimes, FaUser } from 'react-icons/fa';
 import WalletConnect from './blockchain/WalletConnect';
 import { useBlockchain } from '../contexts/BlockchainContext';
 
@@ -28,7 +28,6 @@ const Navbar: React.FC = () => {
     { to: '/', text: 'Home', icon: <FaHome className="mr-2" /> },
     { to: '/articles', text: 'Articles', icon: <FaNewspaper className="mr-2" /> },
     { to: '/submit', text: 'Submit', icon: <FaUpload className="mr-2" /> },
-    { to: '/verify', text: 'Verify', icon: <FaCheck className="mr-2" /> },
     { to: '/about', text: 'About', icon: <FaInfoCircle className="mr-2" /> },
     { to: '/profile', text: 'Profile', icon: <FaUser className="mr-2" /> },
   ];

@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.daff6121.css",
+    "main.js": "/static/js/main.f0d09fcf.js",
+    "static/js/453.8ab44547.chunk.js": "/static/js/453.8ab44547.chunk.js",
+    "static/media/watermelon-pattern.svg": "/static/media/watermelon-pattern.23d37cf5b134821d88c7.svg",
+    "index.html": "/index.html",
+    "main.daff6121.css.map": "/static/css/main.daff6121.css.map",
+    "main.f0d09fcf.js.map": "/static/js/main.f0d09fcf.js.map",
+    "453.8ab44547.chunk.js.map": "/static/js/453.8ab44547.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.daff6121.css",
+    "static/js/main.f0d09fcf.js"
+  ]
+}
