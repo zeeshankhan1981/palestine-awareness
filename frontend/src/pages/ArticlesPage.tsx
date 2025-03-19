@@ -88,7 +88,7 @@ const ArticlesPage: React.FC = () => {
           <p className="text-gray-600 mb-4">
             There are no articles available at the moment.
           </p>
-          <Link to="/submit" className="inline-block px-5 py-2 bg-black text-white font-medium rounded">
+          <Link to="/submit" className="btn btn-primary">
             Submit an Article
           </Link>
         </div>
@@ -107,7 +107,7 @@ const ArticlesPage: React.FC = () => {
                   {article.blockchain_tx_hash && (
                     <>
                       <span className="mx-2">•</span>
-                      <span className="text-green-700 text-xs font-medium">Verified</span>
+                      <span className="badge badge-success">Verified</span>
                     </>
                   )}
                 </div>
@@ -121,7 +121,7 @@ const ArticlesPage: React.FC = () => {
                 <div className="flex items-center mt-6 space-x-4">
                   <Link 
                     to={`/articles/${article.id}`} 
-                    className="text-gray-800 hover:text-black font-medium"
+                    className="btn btn-primary btn-sm"
                   >
                     Read more
                   </Link>
@@ -130,9 +130,9 @@ const ArticlesPage: React.FC = () => {
                     href={article.source_url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-gray-500 hover:text-gray-800 flex items-center text-sm"
+                    className="btn btn-secondary btn-sm"
                   >
-                    <FaExternalLinkAlt className="mr-1" />
+                    <FaExternalLinkAlt className="mr-2" />
                     Original source
                   </a>
                 </div>
@@ -146,7 +146,7 @@ const ArticlesPage: React.FC = () => {
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn btn-secondary btn-sm"
               >
                 ← Previous
               </button>
@@ -158,7 +158,7 @@ const ArticlesPage: React.FC = () => {
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn btn-secondary btn-sm"
               >
                 Next →
               </button>

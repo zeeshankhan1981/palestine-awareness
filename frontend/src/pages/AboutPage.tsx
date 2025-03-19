@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaNewspaper, FaCheck, FaLock, FaDatabase, FaCode, FaGlobe } from 'react-icons/fa';
+import { FaNewspaper, FaCheck, FaLock, FaDatabase, FaCode, FaGlobe, FaFingerprint, FaSearch, FaPaperPlane, FaTwitter, FaFacebook, FaHandHoldingHeart, FaEnvelope, FaShare, FaExternalLinkAlt, FaHashtag } from 'react-icons/fa';
 
 const AboutPage: React.FC = () => {
   return (
@@ -13,226 +13,238 @@ const AboutPage: React.FC = () => {
       </header>
 
       {/* Mission Section */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-serif font-bold mb-6">Our Mission</h2>
-        <div className="prose prose-lg max-w-none">
-          <p>
-            Voice for Palestine is a decentralized news and awareness platform dedicated to preserving 
-            and verifying news about Palestine. In a world where information can be manipulated, 
-            censored, or erased, we believe in the importance of creating a tamper-proof record 
-            of Palestinian stories.
-          </p>
-          <p>
-            Our platform uses blockchain technology to ensure that once an article is recorded, 
-            its existence and content can be verified by anyone, anywhere, at any time. This creates 
-            a permanent, immutable archive of Palestinian narratives that cannot be altered or deleted.
-          </p>
-          <p>
-            We aim to combat misinformation, preserve historical records, and ensure that Palestinian 
-            voices are heard and remembered. By combining traditional web technologies with blockchain 
-            verification, we create a bridge between accessibility and immutability.
-          </p>
+      <div className="mb-12">
+        <h2 className="text-3xl font-serif font-bold mb-6">Our Mission</h2>
+        <div className="card">
+          <div className="card-body">
+            <p className="mb-4">
+              The Palestine News Hub is dedicated to preserving and verifying news 
+              about Palestine in the face of potential censorship and misinformation. 
+              By leveraging blockchain technology, we create an immutable record of 
+              news articles, ensuring that critical information remains accessible 
+              and verifiable.
+            </p>
+            <p>
+              Our platform allows anyone to submit news articles from reputable sources, 
+              which are then verified and stored both in our database and on the 
+              Polygon blockchain. This dual-storage approach ensures that even if our 
+              platform faces censorship, the record of these articles remains intact 
+              and verifiable.
+            </p>
+          </div>
         </div>
-      </section>
+      </div>
 
       {/* How It Works Section */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-serif font-bold mb-6">How It Works</h2>
-        
-        <div className="grid grid-cols-1 gap-8 mb-8">
-          {/* Card 1 */}
-          <div className="border-b pb-8">
-            <div className="flex items-start">
-              <div className="mr-4">
-                <FaNewspaper className="text-gray-700 text-xl" />
+      <div className="mb-12">
+        <h2 className="text-3xl font-serif font-bold mb-6">How It Works</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="card">
+            <div className="card-body">
+              <div className="flex justify-center items-center h-16 w-16 rounded-full bg-gray-100 mb-4 mx-auto">
+                <FaNewspaper className="h-8 w-8 text-gray-700" />
               </div>
-              <div>
-                <h3 className="text-xl font-serif font-semibold mb-3">Content Collection</h3>
-                <p className="text-gray-600">
-                  Our web crawler automatically collects articles from trusted news sources. 
-                  Users can also submit articles they find important.
-                </p>
-              </div>
+              <h3 className="text-xl font-serif font-semibold mb-3 text-center">Submit</h3>
+              <p className="text-center text-gray-600">
+                Users submit articles from reputable news sources about Palestine.
+              </p>
             </div>
           </div>
           
-          {/* Card 2 */}
-          <div className="border-b pb-8">
-            <div className="flex items-start">
-              <div className="mr-4">
-                <FaLock className="text-gray-700 text-xl" />
+          <div className="card">
+            <div className="card-body">
+              <div className="flex justify-center items-center h-16 w-16 rounded-full bg-gray-100 mb-4 mx-auto">
+                <FaFingerprint className="h-8 w-8 text-gray-700" />
               </div>
-              <div>
-                <h3 className="text-xl font-serif font-semibold mb-3">Cryptographic Hashing</h3>
-                <p className="text-gray-600">
-                  We generate a unique SHA-256 hash of each article's content, which serves 
-                  as a digital fingerprint that can verify the article hasn't been altered.
-                </p>
-              </div>
+              <h3 className="text-xl font-serif font-semibold mb-3 text-center">Verify</h3>
+              <p className="text-center text-gray-600">
+                We generate a unique hash of the article content and store it on the blockchain.
+              </p>
             </div>
           </div>
           
-          {/* Card 3 */}
-          <div className="border-b pb-8">
-            <div className="flex items-start">
-              <div className="mr-4">
-                <FaDatabase className="text-gray-700 text-xl" />
+          <div className="card">
+            <div className="card-body">
+              <div className="flex justify-center items-center h-16 w-16 rounded-full bg-gray-100 mb-4 mx-auto">
+                <FaSearch className="h-8 w-8 text-gray-700" />
               </div>
-              <div>
-                <h3 className="text-xl font-serif font-semibold mb-3">Blockchain Storage</h3>
-                <p className="text-gray-600">
-                  The content hash is stored on the Polygon blockchain, creating a permanent, 
-                  tamper-proof record that anyone can verify independently.
-                </p>
-              </div>
-            </div>
-          </div>
-          
-          {/* Card 4 */}
-          <div className="pb-8">
-            <div className="flex items-start">
-              <div className="mr-4">
-                <FaCheck className="text-gray-700 text-xl" />
-              </div>
-              <div>
-                <h3 className="text-xl font-serif font-semibold mb-3">Verification</h3>
-                <p className="text-gray-600">
-                  Users can verify any article by URL or content hash to check if it matches 
-                  what's recorded on the blockchain, ensuring content integrity.
-                </p>
-              </div>
+              <h3 className="text-xl font-serif font-semibold mb-3 text-center">Access</h3>
+              <p className="text-center text-gray-600">
+                Anyone can access and verify the authenticity of articles using our platform.
+              </p>
             </div>
           </div>
         </div>
-        
-        <div className="prose prose-lg max-w-none">
-          <p>
-            This system ensures that even if our website or database were to be compromised, 
-            the record of articles and their original content would still exist on the blockchain, 
-            providing a permanent archive of Palestinian stories.
-          </p>
-        </div>
-      </section>
+      </div>
 
       {/* Technology Stack */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-serif font-bold mb-6">Our Technology</h2>
-        
-        <div className="mb-8">
-          <h3 className="text-xl font-serif font-semibold mb-4 flex items-center">
-            <FaCode className="mr-2 text-gray-700" />
-            Technology Stack
-          </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div>
-              <h4 className="font-medium mb-2">Frontend</h4>
-              <ul className="list-disc pl-5 text-gray-600 space-y-1">
-                <li>React</li>
-                <li>TypeScript</li>
-                <li>CSS</li>
-                <li>React Router</li>
-                <li>Axios</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-medium mb-2">Backend</h4>
-              <ul className="list-disc pl-5 text-gray-600 space-y-1">
-                <li>Node.js</li>
-                <li>Express</li>
-                <li>PostgreSQL</li>
-                <li>Web3.js</li>
-                <li>Ethers.js</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-medium mb-2">Blockchain & Crawler</h4>
-              <ul className="list-disc pl-5 text-gray-600 space-y-1">
-                <li>Polygon Network</li>
-                <li>Solidity Smart Contracts</li>
-                <li>Python</li>
-                <li>BeautifulSoup</li>
-                <li>Newspaper3k</li>
-              </ul>
+      <div className="mb-12">
+        <h2 className="text-3xl font-serif font-bold mb-6">Our Technology</h2>
+        <div className="card">
+          <div className="card-body">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="text-xl font-serif font-semibold mb-3">Frontend</h3>
+                <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                  <li>React for the user interface</li>
+                  <li>Custom CSS for styling</li>
+                  <li>React Router for navigation</li>
+                  <li>Axios for API requests</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h3 className="text-xl font-serif font-semibold mb-3">Backend</h3>
+                <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                  <li>Node.js with Express</li>
+                  <li>MongoDB for database storage</li>
+                  <li>Web3.js for blockchain integration</li>
+                  <li>Polygon blockchain for immutable storage</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-        
-        <div className="prose prose-lg max-w-none">
-          <p>
-            Our platform is open-source and built with modern web technologies. We chose the Polygon 
-            blockchain for its low transaction costs, energy efficiency, and compatibility with 
-            Ethereum standards. This allows us to store thousands of article verifications without 
-            prohibitive costs or environmental impact.
-          </p>
-        </div>
-      </section>
+      </div>
 
       {/* Get Involved */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-serif font-bold mb-6">Get Involved</h2>
-        
-        <div className="prose prose-lg max-w-none mb-6">
-          <p>
-            There are several ways you can contribute to the Voice for Palestine project:
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-          <div className="border-b pb-8 md:border-b-0 md:pb-0 md:border-r md:pr-4">
-            <h3 className="text-xl font-serif font-semibold mb-3">Submit Articles</h3>
-            <p className="text-gray-600 mb-4">
-              Help us grow our archive by submitting important news articles about Palestine.
+      <div className="mb-12">
+        <h2 className="text-3xl font-serif font-bold mb-6">Get Involved</h2>
+        <div className="card">
+          <div className="card-body">
+            <p className="mb-6">
+              There are several ways you can contribute to the Palestine News Hub:
             </p>
-            <Link to="/submit" className="text-gray-800 hover:text-black font-medium">
-              Submit an Article
-            </Link>
-          </div>
-          
-          <div>
-            <h3 className="text-xl font-serif font-semibold mb-3">Spread Awareness</h3>
-            <p className="text-gray-600 mb-4">
-              Share our platform and verified articles on social media to help spread awareness.
-            </p>
-            <Link to="/articles" className="text-gray-800 hover:text-black font-medium">
-              Browse Articles
-            </Link>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="flex">
+                <div className="flex-shrink-0 mr-4">
+                  <div className="flex items-center justify-center h-12 w-12 rounded-full bg-gray-100">
+                    <FaPaperPlane className="h-6 w-6 text-gray-700" />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-lg font-serif font-semibold mb-2">Submit Articles</h3>
+                  <p className="text-gray-600 mb-3">
+                    Help us build our archive by submitting articles from reputable sources.
+                  </p>
+                  <Link to="/submit" className="btn btn-primary btn-sm">
+                    Submit an Article
+                  </Link>
+                </div>
+              </div>
+              
+              <div className="flex">
+                <div className="flex-shrink-0 mr-4">
+                  <div className="flex items-center justify-center h-12 w-12 rounded-full bg-gray-100">
+                    <FaCode className="h-6 w-6 text-gray-700" />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-lg font-serif font-semibold mb-2">Contribute Code</h3>
+                  <p className="text-gray-600 mb-3">
+                    This project is open source. Help us improve the platform.
+                  </p>
+                  <a 
+                    href="https://github.com/zeeshankhan1981/palestine-awareness" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="btn btn-primary btn-sm"
+                  >
+                    GitHub Repository
+                  </a>
+                </div>
+              </div>
+              
+              <div className="flex">
+                <div className="flex-shrink-0 mr-4">
+                  <div className="flex items-center justify-center h-12 w-12 rounded-full bg-gray-100">
+                    <FaShare className="h-6 w-6 text-gray-700" />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-lg font-serif font-semibold mb-2">Spread the Word</h3>
+                  <p className="text-gray-600 mb-3">
+                    Share our platform with others who care about preserving the truth.
+                  </p>
+                  <div className="flex space-x-2">
+                    <a 
+                      href="https://twitter.com/intent/tweet?url=https://palestine-news-hub.org&text=Preserving%20and%20verifying%20news%20about%20Palestine%20using%20blockchain%20technology" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="btn btn-secondary btn-sm"
+                    >
+                      <FaTwitter className="mr-1" />
+                      Share
+                    </a>
+                    <a 
+                      href="https://www.facebook.com/sharer/sharer.php?u=https://palestine-news-hub.org" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="btn btn-secondary btn-sm"
+                    >
+                      <FaFacebook className="mr-1" />
+                      Share
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="flex">
+                <div className="flex-shrink-0 mr-4">
+                  <div className="flex items-center justify-center h-12 w-12 rounded-full bg-gray-100">
+                    <FaHandHoldingHeart className="h-6 w-6 text-gray-700" />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-lg font-serif font-semibold mb-2">Donate</h3>
+                  <p className="text-gray-600 mb-3">
+                    Support our operational costs and help us expand our capabilities.
+                  </p>
+                  <a 
+                    href="#" 
+                    className="btn btn-primary btn-sm"
+                  >
+                    Coming Soon
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Contact Section */}
-      <section>
-        <h2 className="text-2xl font-serif font-bold mb-6">Contact Us</h2>
-        
-        <div>
-          <div className="flex items-start mb-4">
-            <div className="mr-4">
-              <FaGlobe className="text-gray-700 text-xl" />
-            </div>
-            <div>
-              <h3 className="text-xl font-serif font-semibold mb-3">Get in Touch</h3>
-              <p className="text-gray-600 mb-4">
-                Have questions, suggestions, or want to collaborate? We'd love to hear from you.
-              </p>
-              <p className="mb-1">
-                <strong>Email:</strong>{' '}
-                <a href="mailto:info@voiceforpalestine.xyz" className="text-gray-800 hover:text-black">
-                  info@voiceforpalestine.xyz
-                </a>
-              </p>
-              <p>
-                <strong>Website:</strong>{' '}
-                <a href="https://voiceforpalestine.xyz" className="text-gray-800 hover:text-black">
-                  voiceforpalestine.xyz
-                </a>
-              </p>
+      <div>
+        <h2 className="text-3xl font-serif font-bold mb-6">Contact Us</h2>
+        <div className="card">
+          <div className="card-body">
+            <p className="mb-6">
+              Have questions, suggestions, or feedback? We'd love to hear from you.
+            </p>
+            
+            <div className="flex flex-col md:flex-row md:space-x-8">
+              <a 
+                href="mailto:contact@palestine-news-hub.org" 
+                className="btn btn-primary mb-4 md:mb-0"
+              >
+                <FaEnvelope className="mr-2" />
+                Email Us
+              </a>
+              
+              <a 
+                href="https://twitter.com/PalestineNewsHub" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="btn btn-secondary"
+              >
+                <FaTwitter className="mr-2" />
+                Follow Us
+              </a>
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 };
