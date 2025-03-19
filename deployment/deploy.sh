@@ -33,7 +33,7 @@ fi
 echo -e "${GREEN}Building React frontend...${NC}"
 cd /Users/zeeshankhan/palestine-awareness/palestine-news-hub/frontend
 npm install
-REACT_APP_TESTING_MODE=false npm run build
+REACT_APP_TESTING_MODE=true npm run build
 
 # 2. Prepare backend for deployment
 echo -e "${GREEN}Preparing backend...${NC}"
@@ -47,6 +47,7 @@ DEPLOY_DIR="deploy_$(date +%Y%m%d_%H%M%S)"
 mkdir -p $DEPLOY_DIR
 
 # Copy frontend build
+mkdir -p $DEPLOY_DIR/frontend
 cp -r frontend/build/* $DEPLOY_DIR/frontend/
 
 # Copy backend files
