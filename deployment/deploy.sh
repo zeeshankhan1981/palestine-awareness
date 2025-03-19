@@ -47,7 +47,7 @@ DEPLOY_DIR="deploy_$(date +%Y%m%d_%H%M%S)"
 mkdir -p $DEPLOY_DIR
 
 # Copy frontend build
-cp -r frontend/build $DEPLOY_DIR/frontend
+cp -r frontend/build/* $DEPLOY_DIR/frontend/
 
 # Copy backend files
 mkdir -p $DEPLOY_DIR/backend
@@ -132,6 +132,7 @@ ssh $SSH_HOST "cd $REMOTE_DIR/crawler && \
                             python3 -m venv venv && \
                             source venv/bin/activate && \
                             pip install -r requirements.txt && \
+                            pip install 'lxml[html_clean]' && \
                             sudo systemctl enable voiceforpalestine-crawler.service && \
                             sudo systemctl restart voiceforpalestine-crawler.service"
 
