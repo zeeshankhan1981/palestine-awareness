@@ -1,105 +1,118 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import * as FaIcons from 'react-icons/fa';
+import { FaHome, FaNewspaper, FaUpload, FaCheck, FaInfoCircle, FaTwitter, FaFacebook, FaInstagram, FaGithub } from 'react-icons/fa';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-palestine-black text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="bg-white border-t border-gray-200">
+      {/* Flag accent bar */}
+      <div className="flag-accent">
+        <div className="flag-accent-black"></div>
+        <div className="flag-accent-white"></div>
+        <div className="flag-accent-green"></div>
+        <div className="flag-accent-red"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About section */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Voice for Palestine</h3>
-            <p className="text-gray-300 text-sm">
+          <div className="col-span-1 md:col-span-2">
+            <div className="flex items-center mb-4">
+              <div className="h-10 w-10 relative overflow-hidden rounded-full mr-3">
+                <div className="absolute inset-0 bg-watermelon-red rounded-full"></div>
+                <div className="absolute bottom-0 h-1/3 inset-x-0 bg-watermelon-green"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <div className="h-1.5 w-1.5 bg-watermelon-seed rounded-full"></div>
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900">Voice for Palestine</h3>
+            </div>
+            <p className="text-gray-600 mb-6">
               A decentralized news and awareness platform for Palestine that stores article metadata 
               and hashes on the Polygon blockchain for verification and authenticity.
             </p>
+            <div className="flex space-x-4">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-palestine-green transition-colors">
+                <FaTwitter size={20} />
+              </a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-palestine-green transition-colors">
+                <FaFacebook size={20} />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-palestine-green transition-colors">
+                <FaInstagram size={20} />
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-palestine-green transition-colors">
+                <FaGithub size={20} />
+              </a>
+            </div>
           </div>
 
           {/* Quick links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="text-lg font-semibold mb-4 text-gray-900">Quick Links</h3>
+            <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-white transition-colors duration-200">
+                <Link to="/" className="text-gray-600 hover:text-palestine-green transition-colors flex items-center">
+                  <FaHome className="mr-2" size={14} />
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/articles" className="text-gray-300 hover:text-white transition-colors duration-200">
+                <Link to="/articles" className="text-gray-600 hover:text-palestine-green transition-colors flex items-center">
+                  <FaNewspaper className="mr-2" size={14} />
                   Articles
                 </Link>
               </li>
               <li>
-                <Link to="/submit" className="text-gray-300 hover:text-white transition-colors duration-200">
+                <Link to="/submit" className="text-gray-600 hover:text-palestine-green transition-colors flex items-center">
+                  <FaUpload className="mr-2" size={14} />
                   Submit Article
                 </Link>
               </li>
               <li>
-                <Link to="/verify" className="text-gray-300 hover:text-white transition-colors duration-200">
+                <Link to="/verify" className="text-gray-600 hover:text-palestine-green transition-colors flex items-center">
+                  <FaCheck className="mr-2" size={14} />
                   Verify Content
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-gray-300 hover:text-white transition-colors duration-200">
+                <Link to="/about" className="text-gray-600 hover:text-palestine-green transition-colors flex items-center">
+                  <FaInfoCircle className="mr-2" size={14} />
                   About
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Connect section */}
+          {/* Contact */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Connect</h3>
-            <div className="flex space-x-4 mb-4">
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white transition-colors duration-200"
-              >
-                <FaIcons.FaGithub className="h-6 w-6" />
-                <span className="sr-only">GitHub</span>
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white transition-colors duration-200"
-              >
-                <FaIcons.FaTwitter className="h-6 w-6" />
-                <span className="sr-only">Twitter</span>
-              </a>
-              <a
-                href="https://voiceforpalestine.xyz"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white transition-colors duration-200"
-              >
-                <FaIcons.FaGlobe className="h-6 w-6" />
-                <span className="sr-only">Website</span>
-              </a>
-            </div>
-            <p className="text-sm text-gray-400">
-              Contact us at: <a href="mailto:info@voiceforpalestine.xyz" className="hover:text-white">info@voiceforpalestine.xyz</a>
-            </p>
+            <h3 className="text-lg font-semibold mb-4 text-gray-900">Contact</h3>
+            <ul className="space-y-3 text-gray-600">
+              <li>Email: info@voiceforpalestine.org</li>
+              <li>Phone: +1 (555) 123-4567</li>
+              <li>Address: 123 Peace St, Global City</li>
+            </ul>
           </div>
         </div>
-
-        {/* Bottom bar with flag colors */}
-        <div className="mt-8 pt-8 border-t border-gray-700">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm text-gray-400">
-              &copy; {currentYear} Voice for Palestine. All rights reserved.
-            </p>
-            <div className="mt-4 md:mt-0 flex space-x-1">
-              <div className="h-2 w-16 bg-palestine-black"></div>
-              <div className="h-2 w-16 bg-palestine-white"></div>
-              <div className="h-2 w-16 bg-palestine-green"></div>
-              <div className="h-2 w-16 bg-palestine-red"></div>
-            </div>
+        
+        <div className="border-t border-gray-200 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-500 text-sm">
+            &copy; {currentYear} Voice for Palestine. All rights reserved.
+          </p>
+          <div className="mt-4 md:mt-0">
+            <ul className="flex space-x-6 text-sm">
+              <li>
+                <a href="#" className="text-gray-500 hover:text-palestine-green">Privacy Policy</a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-500 hover:text-palestine-green">Terms of Service</a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-500 hover:text-palestine-green">Cookie Policy</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
