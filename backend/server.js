@@ -7,6 +7,7 @@ const { body, validationResult } = require('express-validator');
 const axios = require('axios');
 const crypto = require('crypto');
 const dotenv = require('dotenv');
+const path = require('path');
 
 // Load environment variables
 dotenv.config();
@@ -25,8 +26,17 @@ const pool = new Pool({
   host: process.env.DB_HOST || 'localhost',
   port: process.env.DB_PORT || 5432,
   database: process.env.DB_NAME || 'palestine_news',
-  user: process.env.DB_USER || 'postgres',
+  user: process.env.DB_USER || 'zeeshankhan',
   password: process.env.DB_PASSWORD || '',
+});
+
+// Test database connection
+pool.query('SELECT NOW()', (err, res) => {
+  if (err) {
+    console.error('Database connection error:', err.stack);
+  } else {
+    console.log('Database connected successfully:', res.rows[0]);
+  }
 });
 
 // Blockchain connection
@@ -34,18 +44,23 @@ let provider;
 let contract;
 
 try {
-  const contractABI = require('../crawler/contract_abi.json');
-  provider = new ethers.JsonRpcProvider(process.env.POLYGON_RPC || 'https://polygon-rpc.com');
-  
-  if (process.env.CONTRACT_ADDRESS) {
-    contract = new ethers.Contract(
-      process.env.CONTRACT_ADDRESS,
-      contractABI,
-      provider
-    );
-    console.log('Connected to blockchain contract');
-  } else {
-    console.warn('CONTRACT_ADDRESS not set. Blockchain verification disabled.');
+  // Check if contract_abi.json exists
+  try {
+    const contractABI = require('../crawler/contract_abi.json');
+    provider = new ethers.JsonRpcProvider(process.env.POLYGON_RPC || 'https://polygon-rpc.com');
+    
+    if (process.env.CONTRACT_ADDRESS) {
+      contract = new ethers.Contract(
+        process.env.CONTRACT_ADDRESS,
+        contractABI,
+        provider
+      );
+      console.log('Connected to blockchain contract');
+    } else {
+      console.warn('CONTRACT_ADDRESS not set. Blockchain verification disabled.');
+    }
+  } catch (error) {
+    console.warn('Contract ABI not found. Blockchain verification disabled.');
   }
 } catch (error) {
   console.error('Error setting up blockchain connection:', error.message);
@@ -59,6 +74,8 @@ app.get('/api/articles', async (req, res) => {
     const { page = 1, limit = 10 } = req.query;
     const offset = (page - 1) * limit;
     
+    console.log(`Fetching articles: page=${page}, limit=${limit}, offset=${offset}`);
+    
     const result = await pool.query(
       `SELECT id, title, source_url, source_name, publication_date, 
        content_hash, blockchain_tx_hash, created_at 
@@ -68,8 +85,12 @@ app.get('/api/articles', async (req, res) => {
       [limit, offset]
     );
     
+    console.log(`Found ${result.rows.length} articles`);
+    
     const countResult = await pool.query('SELECT COUNT(*) FROM articles');
     const totalArticles = parseInt(countResult.rows[0].count);
+    
+    console.log(`Total articles in database: ${totalArticles}`);
     
     res.json({
       articles: result.rows,
@@ -300,6 +321,15 @@ function extractDomain(url) {
     return url;
   }
 }
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+});
 
 // Start server
 app.listen(PORT, () => {

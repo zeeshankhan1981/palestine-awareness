@@ -1,0 +1,5 @@
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=palestine_news
+DB_USER=zeeshankhan
+DB_PASSWORD=

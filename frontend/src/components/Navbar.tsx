@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaHome, FaNewspaper, FaUpload, FaCheck, FaInfoCircle, FaBars, FaTimes } from 'react-icons/fa';
+import { FaHome, FaNewspaper, FaUpload, FaCheck, FaInfoCircle, FaBars, FaTimes, FaUser } from 'react-icons/fa';
+import WalletConnect from './blockchain/WalletConnect';
+import { useBlockchain } from '../contexts/BlockchainContext';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const { account, isVerified, userRole } = useBlockchain();
 
   // Handle scroll effect
   useEffect(() => {
@@ -27,6 +30,7 @@ const Navbar: React.FC = () => {
     { to: '/submit', text: 'Submit', icon: <FaUpload className="mr-2" /> },
     { to: '/verify', text: 'Verify', icon: <FaCheck className="mr-2" /> },
     { to: '/about', text: 'About', icon: <FaInfoCircle className="mr-2" /> },
+    { to: '/profile', text: 'Profile', icon: <FaUser className="mr-2" /> },
   ];
 
   const isActive = (path: string) => {
@@ -54,7 +58,7 @@ const Navbar: React.FC = () => {
                 <div className="h-1.5 w-1.5 bg-watermelon-seed rounded-full"></div>
               </div>
             </div>
-            <span className="font-serif font-bold text-lg">Palestine News Hub</span>
+            <span className="font-serif font-bold text-lg">Voice for Palestine</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -71,6 +75,18 @@ const Navbar: React.FC = () => {
                 {link.text}
               </Link>
             ))}
+            
+            {/* Wallet Connect Button */}
+            <div className="ml-4">
+              <WalletConnect />
+            </div>
+            
+            {/* User Verification Status */}
+            {account && isVerified && (
+              <div className="ml-2 text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
+                Verified
+              </div>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -115,6 +131,11 @@ const Navbar: React.FC = () => {
               {link.text}
             </Link>
           ))}
+          
+          {/* Mobile Wallet Connect */}
+          <div className="py-4 px-6 w-full">
+            <WalletConnect />
+          </div>
         </div>
       </div>
       
